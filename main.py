@@ -9,6 +9,11 @@ def home():
       'home.html',
       title = 'Home')
 
+@app.route('/agents')
+def home():
+    return render_template(
+      'agents.html',
+      title = 'Agents')
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

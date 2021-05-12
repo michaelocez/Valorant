@@ -10,7 +10,7 @@ def home():
       title = 'Home')
 
 @app.route('/agents')
-def home():
+def agents():
     return render_template(
       'agents.html',
       title = 'Agents')

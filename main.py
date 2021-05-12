@@ -10,10 +10,14 @@ def home():
       title = 'Home')
 
 @app.route('/agents')
-def agents():
-    return render_template(
-      'agents.html',
-      title = 'Agents')
+def agents(name):
+    conn = sqlite3.connect('12Valorant.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT name FROM Agents')
+    agents = cursor.fetchone()
+    conn.close()
+    return render_template('agents.html',title = 'Agents')
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

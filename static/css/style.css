@@ -37,7 +37,7 @@ p{
   color: #ffffff;
 }
 
-/* Add a color to the active/current link */
+/* Add a color to the active/current link CURRENTLY NOT WORKING */
 .topnav a.active {
   background-color: #ff4655;
   color: #fffff;

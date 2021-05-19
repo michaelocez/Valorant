@@ -9,14 +9,14 @@ def home():
       'home.html',
       title = 'Home')
 
-@app.route('/agents')
-def agents(name):
+@app.route('/agents/')
+def agents():
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()
     cursor.execute('SELECT name FROM Agents')
-    agents = cursor.fetchone()
+    agents = cursor.fetchall()
     conn.close()
-    return render_template('agents.html',title = 'Agents')
+    return render_template('agents.html', names = name)
 
 
 if __name__ == "__main__":

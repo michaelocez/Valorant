@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <p> Agents test </p>
-<p> agents  names = {{agents[1]}} </p>
+  {% for i in results %}
+    <p> agents  names = {{results[1]}} </p>
+  {% endfor %}
 {% endblock %}

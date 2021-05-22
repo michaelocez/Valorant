@@ -14,9 +14,9 @@ def agents():
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()
     cursor.execute('SELECT name FROM Agents')
-    agents = cursor.fetchall()
+    results = cursor.fetchall()
     conn.close()
-    return render_template('agents.html', names = name)
+    return render_template('agents.html', results = results)
 
 
 if __name__ == "__main__":

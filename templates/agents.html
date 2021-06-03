@@ -1,7 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<p> Agents test </p>
-  {% for i in results %}
-    <p>{{i[0]}} </p>
-  {% endfor %}
+{% for agent in results %}
+<a href="/agents/{{results[0]}}">{{results[1]}}</a>
+{% endfor %}
 {% endblock %}

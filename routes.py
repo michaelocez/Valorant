@@ -18,6 +18,7 @@ def agent():
     conn.close()
     return render_template('agents.html', results = results, title = 'Agents')
 
+#
 @app.route('/agents/<int:id>')
 def agentid(id):
     conn = sqlite3.connect('12Valorant.db')
@@ -26,8 +27,6 @@ def agentid(id):
     agentid = cursor.fetchall()
     conn.close()
     return render_template('agentid.html', agentid = agentid, title = 'Agent')
-
-
 
 
 if __name__ == "__main__":

@@ -3,6 +3,11 @@ body{
   background-color:#0f1519
 }
 
+img {
+  width: 10%;
+  height: auto;
+}
+
 h1{
   color:#F9F9F9
 }

@@ -2,5 +2,6 @@
 {% block content %}
 {% for agent in results %}
 <a href="/agents/{{agent[0]}}">{{agent[1]}}</a>
+<img src="{{agent[4]}}" alt="picture">
 {% endfor %}
 {% endblock %}

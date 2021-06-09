@@ -13,7 +13,7 @@ def home():
 def agent():
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT id, name FROM Agents')
+    cursor.execute('SELECT * FROM Agents')
     results = cursor.fetchall()
     conn.close()
     return render_template('agents.html', results = results, title = 'Agents')

@@ -24,6 +24,11 @@ a{
   color:#ff4655
 }
 
+b{
+  color:#ff4655;
+  font-size:50px;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #000000;

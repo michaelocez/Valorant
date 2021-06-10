@@ -1,5 +1,8 @@
 {% extends 'layout.html' %}
 {% block content %}
+<center>
+<b> Agents </b>
+</center>
 {% for agent in results %}
 <a href="/agents/{{agent[0]}}">{{agent[1]}}</a>
 <img src="{{agent[4]}}" alt="picture">

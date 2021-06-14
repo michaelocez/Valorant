@@ -1,5 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
 <p> Agents test </p>
-<p>{{agentid[1]}} </p>
+{% for agentid in agentid %}
+<p>{{agentid[1]}}</p>
+<p>{{agentid[5]}}</p>
+<p>{{agentid[3]}}</p>
+<img src="{{agentid[4]}}" alt="picture">
+{% endfor %}
+
 {% endblock %}

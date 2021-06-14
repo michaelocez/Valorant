@@ -32,7 +32,7 @@ def agent():
 def agentid(id):
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Agents WHERE id = ?;',(id,))
+    cursor.execute('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,))
     agentid = cursor.fetchall()
     conn.close()
     return render_template('agentid.html', agentid = agentid, title = 'Agent')

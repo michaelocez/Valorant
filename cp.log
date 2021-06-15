@@ -1,8 +1,0 @@
-INFO: Platform: win32
-INFO: Version Info: v0.3.0
-DEBUG: Log Path: cp.log
-DEBUG: command: ['python', 'S:\\M18197\\Valorant\\routes.py']
-DEBUG: file: None
-DEBUG: pause: True
-DEBUG: repl: python
-DEBUG: args: ['S:\\M18197\\Valorant\\routes.py']

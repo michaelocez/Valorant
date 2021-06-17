@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<center>
+  <b> Weapons</b>
+</center>
+<!--loop gives flask error -->
+{% for weapons in weapons %}
+<a href="/weapons/{{weapons[0]}}">{{weapons[1]}}
+  <img src="/static/images/weapons/{{weapons[3]}}" alt="picture">
+</a>
+{% endfor %}
+
+{% endblock %}

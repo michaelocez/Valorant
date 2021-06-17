@@ -1,11 +1,14 @@
 {% extends 'layout.html' %}
 {% block content %}
+
 <center>
 <b> Agents </b>
 </center>
+<!--loop gives flask error -->
 {% for agent in results %}
   <a href="/agents/{{agent[0]}}">{{agent[1]}}
     <img src="/static/images/agents/{{agent[4]}}" alt="picture">
   </a>
 {% endfor %}
+
 {% endblock %}

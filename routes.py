@@ -15,20 +15,18 @@ def do_query(query,data= None,fetchall=False):
 #home page
 @app.route('/')
 def home():
-    return render_template(
-      'home.html',
-      title = 'Home')
+    return render_template('home.html',title = 'Home')
 
 #agents route to get names from database
 @app.route('/agents/')
 def agent():
-    results = do_query('SELECT * FROM Agents', data = None, fetchall = True)
-    return render_template('agents.html', results = results, title = 'Agents')
+    agents = do_query('SELECT * FROM Agents', data = None, fetchall = True)
+    return render_template('agents.html', agents = agents, title = 'Agents')
 
 #page for each agent
 @app.route('/agents/<int:id>')
 def agentid(id):
-    agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,), fetchall = True)
+    agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
     return render_template('agentid.html', agentid = agentid, title = 'Agent')
 
 #page to get all weapons

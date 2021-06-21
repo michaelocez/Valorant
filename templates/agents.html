@@ -4,10 +4,9 @@
 <center>
 <b> Agents </b>
 </center>
-<!--loop gives flask error -->
 {% for agent in agents %}
   <a href="/agents/{{agent[0]}}">{{agent[1]}}
-    <img src="/static/images/agents/{{agent[4]}}" alt="picture">
+    <img src="/static/images/agents/{{agent[4]}}" class = "AgentImages" alt="picture">
   </a>
 {% endfor %}
 

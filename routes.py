@@ -11,6 +11,7 @@ def do_query(query,data= None,fetchall=False):
     else:
         cursor.execute(query,data)
     results = cursor.fetchall() if fetchall else cur.fetchall()
+    return results
 
 #home page
 @app.route('/')
@@ -37,7 +38,7 @@ def weapons():
 
 @app.route('/weapons/<int:id>')
 def weaponid(id):
-    agentid = do_query('SELECT * FROM Weapon', fetchall = True)
+    weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
     return render_template('weaponid.html', weaponid = weaponid, title = 'Weapon')
 
 

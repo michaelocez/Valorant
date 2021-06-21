@@ -1,10 +1,16 @@
 body{
   font-family: Orbitron ;
-  background-color:#0f1519
+  background-color:#0f1519;
+  margin: 0px;
 }
 
-img {
+.AgentImages{
   width: 10%;
+  height: auto;
+}
+
+.WeaponImages{
+  width: 300px;
   height: auto;
 }
 
@@ -33,6 +39,8 @@ b{
 .topnav {
   background-color: #000000;
   overflow: hidden;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* Style the links inside the navigation bar */
@@ -49,10 +57,4 @@ b{
 .topnav a:hover {
   background-color: #ff4655;
   color: #ffffff;
-}
-
-/* Add a color to the active/current link CURRENTLY NOT WORKING */
-.topnav a.active {
-  background-color: #ff4655;
-  color: #fffff;
 }

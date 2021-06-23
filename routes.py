@@ -41,6 +41,15 @@ def weaponid(id):
     weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
     return render_template('weaponid.html', weaponid = weaponid, title = 'Weapon')
 
+@app.route('/skins/')
+def skincollection():
+    skincollection = do_query('SELECT * FROM SkinCollection', data = None, fetchall = True)
+    return render_template('skincollection.html', skincollection = skincollection, title= 'Skins')
+
+@app.route('/skins/<int:id>')
+def skinscollectionid(id):
+    skincollectionid = do_query('SELECT * FROM SkinCollection WHERE SkinCollection.id = ?',(id,), fetchall = True)
+    return render_template('skincollectionid.html', skincollectionid = skincollectionid, title= 'Skins')
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

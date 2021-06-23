@@ -1,33 +1,39 @@
 body{
-  font-family: Orbitron ;
+  font-family: Helvetica, sans-serif;
   background-color:#0f1519;
   margin: 0px;
 }
 
+
 .AgentImages{
   width: 10%;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .WeaponImages{
   width: 300px;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1{
-  color:#F9F9F9
+  color:#F9F9F9;
 }
 
 h2{
-  color:#F9F9F9
+  color:#F9F9F9;
+  font-family: 'Brush Script MT', cursive;
 }
 
 p{
-  color:#ff4655
+  color:#ff4655;
 }
 
 a{
-  color:#ff4655
+  color:#ff4655;
 }
 
 b{
@@ -35,7 +41,14 @@ b{
   font-size:50px;
 }
 
-/* Add a black background color to the top navigation */
+.PC{
+  width: 850px;
+}
+
+
+
+
+/*NAV BAR */
 .topnav {
   background-color: #000000;
   overflow: hidden;
@@ -43,17 +56,16 @@ b{
   margin: 0px;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   color: #ffffff;
   text-align: center;
+  font-family: 'Trebuchet MS', sans-serif;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ff4655;
   color: #ffffff;

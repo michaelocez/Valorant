@@ -47,9 +47,9 @@ def skincollection():
     return render_template('skincollection.html', skincollection = skincollection, title= 'Skins')
 
 @app.route('/skins/<int:id>')
-def skinscollectionid(id):
-    skincollectionid = do_query('SELECT * FROM SkinCollection WHERE SkinCollection.id = ?',(id,), fetchall = True)
-    return render_template('skincollectionid.html', skincollectionid = skincollectionid, title= 'Skins')
+def skins(id):
+    skins = do_query('SELECT * FROM skin WHERE skin.id = ?',(id,), fetchall = True)
+    return render_template('skins.html', skins = skins, title= 'Skins')
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

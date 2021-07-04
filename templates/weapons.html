@@ -3,11 +3,15 @@
 
 <center>
   <b> Weapons</b>
-</center>
 {% for weapons in weapons %}
-<a href="/weapons/{{weapons[0]}}">{{weapons[1]}}
-  <img src="/static/images/weapons/{{weapons[3]}}" class="WeaponImages" alt="picture">
-</a>
-{% endfor %}
+<div class="row">
+  <div class="column">
+    <a href="/weapons/{{weapons[0]}}">{{weapons[1]}}
+      <img src="/static/images/weapons/{{weapons[3]}}" class="WeaponImages" alt="picture">
+    </a>
+  </div>
+</div>
 
+{% endfor %}
+</center>
 {% endblock %}

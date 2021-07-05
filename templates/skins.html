@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<p> skins</p>
 
 {% for skins in skins %}
-<p> {{skins[1]}} {{skins[2]}}</p>
-<img src="/static/images/skins/{{skins[0]}}" class="SkinImages" alt="Skin Images"
+<p> <p>{{skins[3]}} {{skins[4]}}
+<img src="/static/images/skins/{{skins[3]}}{{skins[4]}}.png" class="SkinImages" alt="Skin Images"
+</p>
 
 {% endfor %}
 

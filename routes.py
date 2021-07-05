@@ -48,7 +48,7 @@ def skincollection():
 
 @app.route('/skins/<int:id>')
 def skins(id):
-    skins = do_query('SELECT Skin.image, SkinCollection.name, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?;',(id,), fetchall = True)
+    skins = do_query('SELECT Skin.*, SkinCollection.name, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
 if __name__ == "__main__":

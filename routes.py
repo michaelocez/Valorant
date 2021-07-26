@@ -2,7 +2,7 @@ import sqlite3
 from flask import Flask, render_template
 app = Flask(__name__)
 
-#DEBUG working on do query
+#Do Query to avoid repeated code when using @app.route
 def do_query(query,data= None,fetchall=False):
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()
@@ -24,31 +24,34 @@ def agent():
     agents = do_query('SELECT * FROM Agents', data = None, fetchall = True)
     return render_template('agents.html', agents = agents, title = 'Agents')
 
-#page for each agent
+#route for page to show each agent
 @app.route('/agents/<int:id>')
 def agentid(id):
     agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
     return render_template('agentid.html', agentid = agentid, title = 'Agent')
 
-#page to get all weapons
+#route to show all weapons on one page
 @app.route('/weapons/')
 def weapons():
     weapons = do_query('SELECT * FROM Weapon', data = None, fetchall = True)
     return render_template('weapons.html', weapons = weapons, title = 'Weapons')
 
+#route to show each weapon on its own page
 @app.route('/weapons/<int:id>')
 def weaponid(id):
     weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
     return render_template('weaponid.html', weaponid = weaponid, title = 'Weapon')
 
+#route to show all skin collections on a page
 @app.route('/skins/')
 def skincollection():
     skincollection = do_query('SELECT * FROM SkinCollection', data = None, fetchall = True)
     return render_template('skincollection.html', skincollection = skincollection, title= 'Skins')
 
+#route to show every skin in a skin collection on its own page
 @app.route('/skins/<int:id>')
 def skins(id):
-    skins = do_query('SELECT Skin.*, SkinCollection.name, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
+    skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
 if __name__ == "__main__":

@@ -33,8 +33,9 @@ def agentid(id):
 #route to show all weapons on one page
 @app.route('/weapons/')
 def weapons():
-    weapons = do_query('SELECT * FROM Weapon', data = None, fetchall = True)
-    return render_template('weapons.html', weapons = weapons, title = 'Weapons')
+    weapons = do_query('SELECT * FROM Weapon WHERE class = "Secondary"', data = None, fetchall = True)
+    weaponsp = do_query('SELECT * FROM Weapon WHERE class = "Primary"', data = None, fetchall = True)
+    return render_template('weapons.html', weapons = weapons, weaponsp = weaponsp, title = 'Weapons')
 
 #route to show each weapon on its own page
 @app.route('/weapons/<int:id>')
@@ -53,6 +54,7 @@ def skincollection():
 def skins(id):
     skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

@@ -5,22 +5,15 @@
   <b> Weapons</b>
 </center>
 
-{% for weapons in weapons %}
-  <div class="column">
-    <a href="/weapons/{{weapons[0]}}">{{weapons[1]}}
-      <img src="/static/images/weapons/{{weapons[3]}}" class="WeaponImages" alt="picture">
+
+<div class="grid-container">
+  {% for weapons in weapons %}
+  <div>
+      <a href="<a href="/weapons/{{weapons[0]}}">{{weapons[1]}}
+        <img src="/static/images/weapons/{{weapons[3]}}" class="WeaponImages" alt="picture">
     </a>
   </div>
-{% endfor %}
-
-<left>
-{% for weaponsp in weaponsp %}
-  <div class="column1">
-    <a href="/weapons/{{weaponsp[0]}}">{{weaponsp[1]}}
-      <img src="/static/images/weapons/{{weaponsp[3]}}" class="WeaponImages" alt="picture">
-    </a>
-  </div>
-{% endfor %}
-
+  {% endfor %}
+</div>
 
 {% endblock %}

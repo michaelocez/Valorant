@@ -33,9 +33,8 @@ def agentid(id):
 #route to show all weapons on one page
 @app.route('/weapons/')
 def weapons():
-    weapons = do_query('SELECT * FROM Weapon WHERE class = "Secondary"', data = None, fetchall = True)
-    weaponsp = do_query('SELECT * FROM Weapon WHERE class = "Primary"', data = None, fetchall = True)
-    return render_template('weapons.html', weapons = weapons, weaponsp = weaponsp, title = 'Weapons')
+    weapons = do_query('SELECT * FROM Weapon', data = None, fetchall = True)
+    return render_template('weapons.html', weapons = weapons, title = 'Weapons')
 
 #route to show each weapon on its own page
 @app.route('/weapons/<int:id>')

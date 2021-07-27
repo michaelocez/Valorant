@@ -23,6 +23,21 @@ body{
   vertical-align: middle;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 5px;
+  background-color: inherit;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 11px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;

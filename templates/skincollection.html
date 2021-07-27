@@ -4,12 +4,16 @@
 <center>
 <p> skin collections</p>
 </center>
-{% for skincollection in skincollection %}
 
-  <a href="/skins/{{skincollection[0]}}">{{skincollection[3]}}
-    <img src="/static/images/skincollection/{{skincollection[2]}}" class = "SkinCollectionImages" alt="skin collection images" width="400" height="195">
-</a>
-{% endfor %}
-
+<div class="grid-container">
+  {% for skincollection in skincollection %}
+  <div>
+      <a href="/skins/{{skincollection[0]}}">
+        <p>{{skincollection[3]}}</p>
+        <img src="/static/images/skincollection/{{skincollection[2]}}" class = "SkinCollectionImages" alt="skin collection images" width="400" height="195">
+    </a>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

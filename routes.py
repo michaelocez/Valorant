@@ -55,9 +55,9 @@ def skins(id):
     return render_template('skins.html', skins = skins, title= 'Skins')
 
 #error page
-@app.route('/error')
-def error():
-    return render_template('error.html')
+@app.errorhandler(404)
+def error404(error):
+    return render_template('error.html', title='Error')
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

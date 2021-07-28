@@ -7,14 +7,18 @@
 
 <b> SKINCOLLECTIONNAME Collection </b>
 
-
-<!-- loop to show all skins in the collection and name -->
-{% for skins in skins %}
-<p>{{skins[6]}} {{skins[7]}}
-<img src="/static/images/skins/{{skins[4]}}{{skins[7]}}.png" class="SkinImages" alt="Skin Images"
-</p>
-
-{% endfor %}
 </center>
+<!-- loop to show all skins in the collection and name -->
+<div class="grid-container">
+  {% for skins in skins %}
+  <div>
+      <a href="/weapons/{{skins[1]}}">
+        <p>{{skins[6]}} {{skins[7]}}
+          <img src="/static/images/skins/{{skins[4]}}{{skins[7]}}.png" class="SkinImages" alt="Skin Images"
+        </p>
+      </a>
+  </div>
+{% endfor %}
+</div>
 
 {% endblock %}

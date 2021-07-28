@@ -25,14 +25,20 @@ body{
   font-size: 15px;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
+.AgentImages:hover{
+  background-color: blue;
+}
+
+.WeaponImages:hover{
+  background-color: blue;
+}
+
+.grid-container p:hover{
+  background-color: blue;
 }
 
 .AgentImages{
-  width: 10%;
+  width: 25%;
   height: auto;
   margin-left: auto;
   margin-right: auto;

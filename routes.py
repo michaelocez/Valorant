@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 #Do Query to avoid repeated code when using @app.route
@@ -10,7 +10,7 @@ def do_query(query,data= None,fetchall=False):
         cursor.execute(query)
     else:
         cursor.execute(query,data)
-    results = cursor.fetchall() if fetchall else cur.fetchall()
+    results = cursor.fetchall() if fetchall else cursor.fetchall()
     return results
 
 #home page
@@ -54,6 +54,10 @@ def skins(id):
     skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
+#error page
+@app.route('/error')
+def error():
+    return render_template('error.html')
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

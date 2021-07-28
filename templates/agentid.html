@@ -1,14 +1,18 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<p> Agents test </p>
-{% for agentid in agentid %}
-<p>{{agentid[1]}}</p>
-<a href="/weapons/{{agentid[2]}}">
-<p>{{agentid[1]}} is carrying a {{agentid[5]}}</p>
-</a>
-<p class="PC">{{agentid[3]}} </p>
-<img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
-{% endfor %}
+<center>
+
+<!-- loop for agent image, description and name -->
+  {% for agentid in agentid %}
+  <p>{{agentid[1]}}</p>
+  <a href="/weapons/{{agentid[2]}}">
+    <p>{{agentid[1]}} is carrying a {{agentid[5]}}</p>
+  </a>
+  <p class="PC">{{agentid[3]}} </p>
+  <img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
+  {% endfor %}
+
+</center>
 
 {% endblock %}

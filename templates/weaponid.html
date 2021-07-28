@@ -1,11 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
+<center>
 
-<p> weapons test </p>
+
 {% for weaponid in weaponid %}
 <p>{{weaponid[1]}}</p>
 <p class="PC">{{weaponid[2]}}</p>
 <img src="/static/images/weapons/{{weaponid[3]}}" class="WeaponImages" alt="picture">
+</center>
 {% endfor %}
 
 {% endblock %}

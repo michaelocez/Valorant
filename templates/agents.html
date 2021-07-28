@@ -4,10 +4,16 @@
 <center>
 <b> Agents </b>
 </center>
-{% for agent in agents %}
-  <a href="/agents/{{agent[0]}}">{{agent[1]}}
-    <img src="/static/images/agents/{{agent[4]}}" class = "AgentImages" alt="Agent Images">
-  </a>
-{% endfor %}
+
+<div class="grid-container">
+  {% for agent in agents %}
+  <div>
+      <a href="/agents/{{agent[0]}}">
+        <p>{{agent[1]}}</p>
+        <img src="/static/images/agents/{{agent[4]}}" class = "AgentImages" alt="Agent Images" >
+    </a>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

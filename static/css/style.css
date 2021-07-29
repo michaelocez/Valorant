@@ -61,6 +61,12 @@ h2{
   font-family:sans-serif;
 }
 
+h3{
+  color:#F9F9F9;
+  font-size: 9px;
+  font-family:sans-serif;
+}
+
 p{
   color:#ff4655;
 }
@@ -78,18 +84,14 @@ b{
   width: 850px;
 }
 
-
-
-/*NAV BAR */
 .topnav {
+  position: relative;
   background-color: #000000;
   overflow: hidden;
-  padding: 0px;
-  margin: 0px;
 }
 
 .topnav a {
-  float: left;
+  float:left;
   color: #ffffff;
   text-align: center;
   font-family: 'Trebuchet MS', sans-serif;
@@ -101,4 +103,12 @@ b{
 .topnav a:hover {
   background-color: #ff4655;
   color: #ffffff;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0%;
+  width:100%;
+  height:60px;
+  overflow: hidden;
 }

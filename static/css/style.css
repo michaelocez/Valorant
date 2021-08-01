@@ -25,17 +25,6 @@ body{
   font-size: 15px;
 }
 
-.AgentImages:hover{
-  background-color: blue;
-}
-
-.WeaponImages:hover{
-  background-color: blue;
-}
-
-.grid-container p:hover{
-  background-color: blue;
-}
 
 .AgentImages{
   width: 25%;
@@ -73,6 +62,7 @@ p{
 
 a{
   color:#ff4655;
+  text-decoration: none;
 }
 
 b{
@@ -111,4 +101,8 @@ b{
   width:100%;
   height:60px;
   overflow: hidden;
+}
+
+.footer a:hover{
+  color: #ffffff;
 }

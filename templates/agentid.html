@@ -2,7 +2,7 @@
 {% block content %}
 
 <center>
-
+<div class=agents>
 <!-- loop for agent image, description and name -->
   {% for agentid in agentid %}
     <p>{{agentid[1]}}</p>
@@ -12,7 +12,7 @@
     <p class="PC">{{agentid[3]}} </p>
     <img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
   {% endfor %}
-
+</div>
 </center>
 
 {% endblock %}

@@ -60,9 +60,19 @@ p{
   color:#ff4655;
 }
 
+.agents{
+  text-decoration: underline;
+}
+
 a{
   color:#ff4655;
   text-decoration: none;
+}
+
+a:hover{
+  border-bottom-style: solid;
+  border-bottom-color: #ff4655;
+  transition-duration: 0.15s;
 }
 
 b{
@@ -88,11 +98,15 @@ b{
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  width:150px;
+  transition-duration: 0.4s;
 }
 
 .topnav a:hover {
-  background-color: #ff4655;
-  color: #ffffff;
+  border-bottom-style: solid;
+  border-bottom-color: #ff4655;
+  transition-duration: 0.4s;
+  width:170px;
 }
 
 .footer{

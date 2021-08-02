@@ -31,14 +31,17 @@ body{
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  transition-duration: 0.25s;
 }
 
-.WeaponImages{
-  width: 300px;
+.AgentImages:hover{
+  width: 30%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  transition-duration: 0.15s;
 }
+
 
 h1{
   color:#F9F9F9;
@@ -60,7 +63,7 @@ p{
   color:#ff4655;
 }
 
-.agents{
+.agents a{
   text-decoration: underline;
 }
 
@@ -99,13 +102,13 @@ b{
   text-decoration: none;
   font-size: 17px;
   width:150px;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
 }
 
 .topnav a:hover {
   border-bottom-style: solid;
   border-bottom-color: #ff4655;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
   width:170px;
 }
 
@@ -115,6 +118,7 @@ b{
   width:100%;
   height:60px;
   overflow: hidden;
+  float:bottom;
 }
 
 .footer a:hover{

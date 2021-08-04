@@ -10,17 +10,14 @@
 
 <img src="/static/images/skincollection/{{skins[0][5]}}" class = "SkinCollectionImages" alt="Skin Collection Images" width="400" height="195">
 
-</center>
+
 <!-- loop to show all skins in the collection and name -->
 <div class="grid-container">
   {% for skins in skins %}
-  <div>
-      <a href="/weapons/{{skins[1]}}">
-        <p>{{skins[6]}} {{skins[7]}}
-          <img src="/static/images/skins/{{skins[4]}}{{skins[7]}}.png" class="SkinImages" alt="Skin Images"
-        </p>
-      </a>
-  </div>
+    <a href="/weapons/{{skins[1]}}">
+      <p>{{skins[6]}} {{skins[7]}}</p>
+      <img src="/static/images/skins/{{skins[4]}}{{skins[7]}}.png" class="SkinImages" alt="Skin Images">        
+    </a>
 {% endfor %}
 </div>
 

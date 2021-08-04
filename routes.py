@@ -54,6 +54,18 @@ def skins(id):
     skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
+@app.route ('/search', methods=["POST", "GET"])
+def search():
+    #search bar
+    if request.method == "POST":
+        print (request.form.get("filter"))
+        search = do_query("SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE '%' || ? || '%' ORDER BY SkinCollection.name;", (request.form.get("filter"),), fetchall = True)
+        if len(search) == None:
+            return redirect ('/error')
+        else:
+            return redirect (f"/skins/{(search[0])[0]}")
+    return render_template('search.html')
+
 #error page
 @app.errorhandler(404)
 def error404(error):

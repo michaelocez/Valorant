@@ -42,6 +42,14 @@ body{
   transition-duration: 0.15s;
 }
 
+.error{
+  text-decoration: underline;
+}
+
+.searchbar{
+  float:right;
+  margin-right: 20px;
+}
 
 h1{
   color:#F9F9F9;

@@ -60,16 +60,16 @@ def search():
     if request.method == "POST":
         print (request.form.get("filter"))
         search = do_query("SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE '%' || ? || '%' ORDER BY SkinCollection.name;", (request.form.get("filter"),), fetchall = True)
-        if len(search) == None:
+        if len(search) == 0:
             return redirect ('/error')
         else:
-            return redirect (f"/skins/{(search[0])[0]}")
-    return render_template('search.html')
+            return redirect (f'/skins/{(search[0])[0]}')
 
 #error page
 @app.errorhandler(404)
 def error404(error):
-    return render_template('error.html', title='Error')
+    return render_template('404.html', title = 'Error')
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

@@ -10,6 +10,9 @@
         <p>{{agentid[1]}} is carrying a {{agentid[5]}}</p>
       </a>
     <p class="PC">{{agentid[3]}} </p>
+    <form class="add" action="/add" method="post">
+      <input type="text" name="add" placeholder = "Update agent description">
+    </form>
     <img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
   {% endfor %}
 </div>

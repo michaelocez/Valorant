@@ -61,6 +61,11 @@ h2{
   font-family:sans-serif;
 }
 
+.error_return{
+  color:#ff4655;
+  font-size: 21px;
+}
+
 h3{
   color:#F9F9F9;
   font-size: 9px;

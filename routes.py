@@ -54,16 +54,24 @@ def skins(id):
     skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
-@app.route ('/search', methods=["POST", "GET"])
+#search bar
+@app.route('/search', methods=["POST", "GET"])
 def search():
-    #search bar
     if request.method == "POST":
         print (request.form.get("filter"))
-        search = do_query("SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE '%' || ? || '%' ORDER BY SkinCollection.name;", (request.form.get("filter"),), fetchall = True)
+        search = do_query('SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE ? || '%' ORDER BY SkinCollection.name;', (request.form.get("filter"),), fetchall = True)
         if len(search) == 0:
             return redirect ('/error')
         else:
             return redirect (f'/skins/{(search[0])[0]}')
+
+#update agent description #DEBUG
+@app.route('/add', methods = ["POST", "GET"])
+def add():
+    if request.method == "POST":
+        request.form.get("add")
+    add = do_query('UPDATE SET Agent.description = ? WHERE Agent.id = ?;', (request.form.get("add"), request.get(""),), fetchall = False)
+    return redirect("/agents/")
 
 #error page
 @app.errorhandler(404)

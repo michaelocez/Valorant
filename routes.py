@@ -59,7 +59,7 @@ def skins(id):
 def search():
     if request.method == "POST":
         print (request.form.get("filter"))
-        search = do_query('SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE ? || '%' ORDER BY SkinCollection.name;', (request.form.get("filter"),), fetchall = True)
+        search = do_query(f'SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE "" || ? || "%" ORDER BY SkinCollection.name;', (request.form.get("filter"),), fetchall = True)
         if len(search) == 0:
             return redirect ('/error')
         else:
@@ -70,7 +70,7 @@ def search():
 def add():
     if request.method == "POST":
         request.form.get("add")
-    add = do_query('UPDATE SET Agent.description = ? WHERE Agent.id = ?;', (request.form.get("add"), request.get(""),), fetchall = False)
+    add = do_query('UPDATE Agents SET description = ? WHERE Agents.id = ?;', (request.form.get("add"), request.get(""),), fetchall = False)
     return redirect("/agents/")
 
 #error page

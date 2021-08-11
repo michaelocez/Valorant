@@ -34,16 +34,13 @@ body{
   transition-duration: 0.25s;
 }
 
-.AgentImages:hover{
-  width: 30%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  transition-duration: 0.15s;
-}
-
 .error{
   text-decoration: underline;
+}
+
+.error_return{
+  color:#ff4655;
+  font-size: 21px;
 }
 
 .searchbar{
@@ -56,15 +53,11 @@ h1{
 }
 
 h2{
-  color:#F9F9F9;
-  font-size: 9px;
-  font-family:sans-serif;
+  color:#ff4655;
+  font-size: 14px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.error_return{
-  color:#ff4655;
-  font-size: 21px;
-}
 
 h3{
   color:#F9F9F9;
@@ -74,6 +67,7 @@ h3{
 
 p{
   color:#ff4655;
+  font-family: 'Rubik', sans-serif;
 }
 
 .agents a{
@@ -94,6 +88,7 @@ a:hover{
 b{
   color:#ff4655;
   font-size:50px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .PC{
@@ -110,7 +105,7 @@ b{
   float:left;
   color: #ffffff;
   text-align: center;
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: 'Orbitron';
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;

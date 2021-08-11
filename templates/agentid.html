@@ -6,13 +6,18 @@
 <!-- loop for agent image, description and name -->
   {% for agentid in agentid %}
     <b>{{agentid[1]}}</b>
-      <a href="/weapons/{{agentid[2]}}">
-        <p>{{agentid[1]}} is carrying a {{agentid[5]}}</p>
-      </a>
+      <p>Basic Abilities<br>{{agentid[5]}}</p>
+      <p>Signature Abilities<br>{{agentid[6]}}</p>
+      <p>Ultimate Abilities<br>{{agentid[7]}}</p>
+
+
     <p class="PC">{{agentid[3]}} </p>
     <form class="add" action="/add" method="post">
       <input type="text" name="add" placeholder = "Update agent description">
     </form>
+    <a href="/weapons/{{agentid[2]}}">
+      <p>{{agentid[1]}} is carrying a {{agentid[8]}}</p>
+    </a>
     <img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
   {% endfor %}
 </div>

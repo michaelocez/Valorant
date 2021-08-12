@@ -7,4 +7,19 @@
 <a href="https://github.com/michaelocez">GITHUB</a>
 </h2>
 
+{% for homea in homea %}
+<h2> {{homea[1]}} </h2>
+<img src="/static/images/agents/{{homea[4]}}">
+{% endfor %}
+
+{% for homew in homew %}
+<h2> {{homew[1]}} </h2>
+<img src="/static/images/weapons/{{homew[3]}}">
+{% endfor %}
+
+{% for homes in homes %}
+<h2> {{homes[1]}} </h2>
+<img src="/static/images/skincollection/{{homes[2]}}">
+{% endfor %}
+
 {% endblock %}

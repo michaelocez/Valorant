@@ -16,7 +16,10 @@ def do_query(query,data= None,fetchall=False):
 #home page
 @app.route('/')
 def home():
-    return render_template('home.html',title = 'Home')
+    homea = do_query('SELECT * FROM Agents WHERE id = 11')
+    homew = do_query('SELECT * FROM Weapon WHERE id = 16')
+    homes = do_query('SELECT * FROM SkinCollection WHERE id = 13')
+    return render_template('home.html', homea = homea, homew = homew, homes = homes, title = 'Home')
 
 #agents route to get names from database
 @app.route('/agents/')

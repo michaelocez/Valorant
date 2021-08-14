@@ -1,25 +1,38 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<b> Michael's Home Page</b>
-<p> Hello World</p>
-<h2>
-<a href="https://github.com/michaelocez">GITHUB</a>
-</h2>
+<center>
+  <b> Michael's Home Page</b>
+  <h2> My Top 3</h2>
+</center>
 
-{% for homea in homea %}
-<h2> {{homea[1]}} </h2>
-<img src="/static/images/agents/{{homea[4]}}">
-{% endfor %}
+<div class="grid-container">
+  {% for homea in homea %}
+  <div>
+    <a href="/agents/{{homea[0]}}">
+      <h2> {{homea[1]}} </h2>
+      <img src="/static/images/agents/{{homea[4]}}">
+    </a>
+  </div>
+  {% endfor %}
 
-{% for homew in homew %}
-<h2> {{homew[1]}} </h2>
-<img src="/static/images/weapons/{{homew[3]}}">
-{% endfor %}
+  {% for homew in homew %}
+  <div>
+    <a href="/weapons/{{homew[0]}}">
+      <h2> {{homew[1]}} </h2>
+      <img src="/static/images/weapons/{{homew[3]}}">
+    </a>
+  </div>
+  {% endfor %}
 
-{% for homes in homes %}
-<h2> {{homes[1]}} </h2>
-<img src="/static/images/skincollection/{{homes[2]}}">
-{% endfor %}
 
+  {% for homes in homes %}
+  <div>
+    <a href="/skins/{{homes[0]}}">
+      <h2> {{homes[1]}} </h2>
+      <img src="/static/images/skincollection/{{homes[2]}}">
+    </a>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

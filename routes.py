@@ -18,7 +18,7 @@ def do_query(query,data= None,fetchall=False):
 def home():
     homea = do_query('SELECT * FROM Agents WHERE id = 11')
     homew = do_query('SELECT * FROM Weapon WHERE id = 16')
-    homes = do_query('SELECT * FROM SkinCollection WHERE id = 13')
+    homes = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.id = 30', fetchall = True)
     return render_template('home.html', homea = homea, homew = homew, homes = homes, title = 'Home')
 
 #agents route to get names from database
@@ -49,7 +49,7 @@ def weaponid(id):
 @app.route('/skins/')
 def skincollection():
     skincollection = do_query('SELECT * FROM SkinCollection', data = None, fetchall = True)
-    return render_template('skincollection.html', skincollection = skincollection, title= 'Skins')
+    return render_template('skincollection.html', skincollection = skincollection, title = 'Skins')
 
 #route to show every skin in a skin collection on its own page
 @app.route('/skins/<int:id>')
@@ -68,13 +68,20 @@ def search():
         else:
             return redirect (f'/skins/{(search[0])[0]}')
 
-#update agent description #DEBUG
-@app.route('/add', methods = ["POST", "GET"])
-def add():
-    if request.method == "POST":
-        request.form.get("add")
-    add = do_query('UPDATE Agents SET description = ? WHERE Agents.id = ?;', (request.form.get("add"), request.get(""),), fetchall = False)
-    return redirect("/agents/")
+#WORKING ON CONTACT PAGE
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', title = 'Contact')
+
+#form for user to fill in name,email and message
+@app.route('/message', methods=["POST"])
+def message():
+    user_first_name = request.form['user_first_name']
+    user_last_name = request.form['user_last_name']
+    user_email = request.form['user_email']
+    user_message = request.form['user_message']
+    message = do_query('INSERT INTO contact(user_first_name, user_last_name, user_email, user_message) VALUES (?, ?, ?, ?)')
+    return redirect('/contact')
 
 #error page
 @app.errorhandler(404)

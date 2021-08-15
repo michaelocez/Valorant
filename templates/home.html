@@ -3,11 +3,11 @@
 
 <center>
   <b> Michael's Home Page</b>
-  <h2> My Top 3</h2>
+  <h2> My Top 4</h2>
 </center>
 
 <div class="grid-container">
-  {% for homea in homea %}
+  {% for homea in homea%}
   <div>
     <a href="/agents/{{homea[0]}}">
       <h2> {{homea[1]}} </h2>
@@ -16,7 +16,7 @@
   </div>
   {% endfor %}
 
-  {% for homew in homew %}
+  {% for homew in homew%}
   <div>
     <a href="/weapons/{{homew[0]}}">
       <h2> {{homew[1]}} </h2>
@@ -26,13 +26,21 @@
   {% endfor %}
 
 
-  {% for homes in homes %}
+  {% for homes in homes%}
   <div>
-    <a href="/skins/{{homes[0]}}">
-      <h2> {{homes[1]}} </h2>
-      <img src="/static/images/skincollection/{{homes[2]}}">
+    <a href="/skins/{{homes[3]}}">
+      <h2> {{homes[4]}} </h2>
+      <img src="/static/images/skincollection/{{homes[5]}}">
     </a>
   </div>
+  <div>
+    <a href="/skins/{{homes[3]}}">
+      <h2> {{homes[4]}} {{homes[7]}} </h2>
+      <img src="/static/images/skins/{{homes[4]}}{{homes[7]}}.png">
+    </a>
+    </div
   {% endfor %}
+
+
 </div>
 {% endblock %}

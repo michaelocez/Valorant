@@ -74,13 +74,19 @@ def contact():
     return render_template('contact.html', title = 'Contact')
 
 #form for user to fill in name,email and message
-@app.route('/message', methods=["POST"])
+@app.route ("/message", methods=["POST"])
 def message():
-    user_first_name = request.form['user_first_name']
-    user_last_name = request.form['user_last_name']
-    user_email = request.form['user_email']
-    user_message = request.form['user_message']
-    message = do_query('INSERT INTO contact(user_first_name, user_last_name, user_email, user_message) VALUES (?, ?, ?, ?)')
+    #allows user to input their name, email and message as contact.
+    connection = sqlite3.connect('12Valorant.db')
+    cursor = connection.cursor()
+    user_first_name = request.form["user_first_name"]
+    user_last_name = request.form["user_last_name"]
+    user_email = request.form["user_email"]
+    user_message = request.form["user_message"]
+    sql = "INSERT INTO contact(user_first_name, user_last_name, user_email, user_message) VALUES (?, ?, ?, ?)"
+    cursor.execute(sql,(user_first_name, user_last_name, user_email, user_message))
+    connection.commit()
+    connection.close()
     return redirect('/contact')
 
 #error page

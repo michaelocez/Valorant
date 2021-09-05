@@ -125,6 +125,11 @@ b{
   margin-right: 20px;
 }
 
+.contact{
+  justify-content: center;
+  display: grid;
+}
+
 
 input{
   padding:10px;

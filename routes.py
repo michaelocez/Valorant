@@ -64,8 +64,10 @@ def skins(id):
 def search():
     if request.method == "POST":
         print (request.form.get("filter"))
-        search = do_query(f'SELECT * FROM SkinCollection WHERE SkinCollection.name LIKE "" || ? || "%" ORDER BY SkinCollection.name;', (request.form.get("filter"),), fetchall = True)
+        search = do_query(f'SELECT * FROM SkinCollection WHERE SkinCollection.visible_name LIKE "" || ? || "%" ORDER BY SkinCollection.visible_name;', (request.form.get("filter"),), fetchall = True)
         if len(search) == 0:
+            return redirect ('/error')
+        elif request.form.get("filter")  =='':
             return redirect ('/error')
         else:
             return redirect (f'/skins/{(search[0])[0]}')

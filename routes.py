@@ -1,6 +1,7 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 app = Flask(__name__)
+app.secret_key = '18197'
 
 #Do Query to avoid repeated code when using @app.route
 def do_query(query,data= None,fetchall=False):
@@ -16,6 +17,7 @@ def do_query(query,data= None,fetchall=False):
 #home page
 @app.route('/')
 def home():
+    #queries to get my favourite agent,weapon and skin
     homea = do_query('SELECT * FROM Agents WHERE id = 11')
     homew = do_query('SELECT * FROM Weapon WHERE id = 16')
     homes = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.id = 30', fetchall = True)
@@ -57,7 +59,7 @@ def skins(id):
     skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
-#search bar
+#search bar to search skin collection
 @app.route('/search', methods=["POST", "GET"])
 def search():
     if request.method == "POST":
@@ -68,6 +70,10 @@ def search():
         else:
             return redirect (f'/skins/{(search[0])[0]}')
 
+<<<<<<< HEAD
+=======
+#contacts page
+>>>>>>> 054ca8fd4233dedbbed466b81a2b5b233328fb89
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title = 'Contact')
@@ -84,6 +90,7 @@ def message():
     user_message = request.form["user_message"]
     sql = "INSERT INTO contact(user_first_name, user_last_name, user_email, user_message) VALUES (?, ?, ?, ?)"
     cursor.execute(sql,(user_first_name, user_last_name, user_email, user_message))
+    flash('Thank you!')
     connection.commit()
     connection.close()
     return redirect('/contact')

@@ -68,7 +68,6 @@ def search():
         else:
             return redirect (f'/skins/{(search[0])[0]}')
 
-#WORKING ON CONTACT PAGE
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title = 'Contact')

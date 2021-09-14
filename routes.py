@@ -70,10 +70,7 @@ def search():
         else:
             return redirect (f'/skins/{(search[0])[0]}')
 
-<<<<<<< HEAD
-=======
 #contacts page
->>>>>>> 054ca8fd4233dedbbed466b81a2b5b233328fb89
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title = 'Contact')

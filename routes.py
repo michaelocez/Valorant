@@ -44,7 +44,10 @@ def weapons():
 #route to show each weapon on its own page
 @app.route('/weapons/<int:id>')
 def weaponid(id):
-    weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
+    if id > 19:
+        return redirect('/404')
+    else:
+        weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
     return render_template('weaponid.html', weaponid = weaponid, title = 'Weapon')
 
 #route to show all skin collections on a page
@@ -56,7 +59,10 @@ def skincollection():
 #route to show every skin in a skin collection on its own page
 @app.route('/skins/<int:id>')
 def skins(id):
-    skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
+    if id > 36:
+        return redirect('/404')
+    else:
+        skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
 #search bar to search skin collection

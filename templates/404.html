@@ -1,13 +1,14 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<center>
-  <b> 404 </b>
-  <h1> Page not found </h1>
-<div class = "error">
-  <a href="/" class = "error_return">
-    <h4> Return Home </h4>
-  </a>
+
+<div id="error">
+	<div class="fof">
+    <!-- error text -->
+    		<h1>Error 404</h1>
+	</div>
+    <a href="/" class = "error_return">     <!-- button to go home -->
+      <h4> Return Home </h4>
+    </a>
 </div>
-</center>
 {% endblock %}

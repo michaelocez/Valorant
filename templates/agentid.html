@@ -3,14 +3,12 @@
 
 <center>
 <div class=agents>
-<!-- loop for agent image, description and name -->
+<!-- loop for agent image, description, abilities and name -->
   {% for agentid in agentid %}
     <b>{{agentid[1]}}</b>
       <p>Basic Abilities<br>{{agentid[5]}}</p>
       <p>Signature Abilities<br>{{agentid[6]}}</p>
       <p>Ultimate Ability<br>{{agentid[7]}}</p>
-
-
     <p class="PC">{{agentid[3]}} </p>
     <a href="/weapons/{{agentid[2]}}">
       <p>{{agentid[1]}} is carrying a {{agentid[8]}}</p>

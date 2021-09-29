@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, flash
 app = Flask(__name__)
 app.secret_key = '18197'
 
-#Do Query to avoid repeated code when using @app.route
+#do query to avoid repeated code when using @app.route
 def do_query(query,data= None,fetchall=False):
     conn = sqlite3.connect('12Valorant.db')
     cursor = conn.cursor()

@@ -32,7 +32,12 @@ def agent():
 #route for page to show each agent
 @app.route('/agents/<int:id>')
 def agentid(id):
-    agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
+    if id > 16:
+        return redirect('/404')
+    elif id < 1:
+        return redirect('/404')
+    else:
+        agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
     return render_template('agentid.html', agentid = agentid, title = 'Agent')
 
 #route to show all weapons on one page
@@ -44,7 +49,9 @@ def weapons():
 #route to show each weapon on its own page
 @app.route('/weapons/<int:id>')
 def weaponid(id):
-    if id > 19:
+    if id > 18:
+        return redirect('/404')
+    elif id < 1:
         return redirect('/404')
     else:
         weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
@@ -60,6 +67,8 @@ def skincollection():
 @app.route('/skins/<int:id>')
 def skins(id):
     if id > 36:
+        return redirect('/404')
+    elif id < 1:
         return redirect('/404')
     else:
         skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)

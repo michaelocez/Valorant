@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, abort
 app = Flask(__name__)
 app.secret_key = '18197'
 
@@ -11,7 +11,7 @@ def do_query(query,data= None,fetchall=False):
         cursor.execute(query)
     else:
         cursor.execute(query,data)
-    results = cursor.fetchall() if fetchall else cursor.fetchall()
+    results = cursor.fetchall() if fetchall else cursor.fetchone()
     return results
 
 #home page
@@ -32,12 +32,9 @@ def agent():
 #route for page to show each agent
 @app.route('/agents/<int:id>')
 def agentid(id):
-    if id > 16:
-        return redirect('/404')
-    elif id < 1:
-        return redirect('/404')
-    else:
-        agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
+    agentid = do_query('SELECT Agents.*, Weapon.name FROM Agents JOIN Weapon on Agents.carrying_weapon = Weapon.id WHERE Agents.id = ?;',(id,),fetchall = True)
+    if len(agentid) == 0:
+        abort(404)
     return render_template('agentid.html', agentid = agentid, title = 'Agent')
 
 #route to show all weapons on one page
@@ -49,12 +46,9 @@ def weapons():
 #route to show each weapon on its own page
 @app.route('/weapons/<int:id>')
 def weaponid(id):
-    if id > 18:
-        return redirect('/404')
-    elif id < 1:
-        return redirect('/404')
-    else:
-        weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
+    weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',(id,), fetchall = True)
+    if len(weaponid) == 0:
+        abort(404)
     return render_template('weaponid.html', weaponid = weaponid, title = 'Weapon')
 
 #route to show all skin collections on a page
@@ -66,12 +60,9 @@ def skincollection():
 #route to show every skin in a skin collection on its own page
 @app.route('/skins/<int:id>')
 def skins(id):
-    if id > 36:
-        return redirect('/404')
-    elif id < 1:
-        return redirect('/404')
-    else:
-        skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
+    skins = do_query('SELECT Skin.*, SkinCollection.*, Weapon.name FROM Skin JOIN SkinCollection on Skin.collection = SkinCollection.id JOIN Weapon ON Weapon.id = Skin.weapon WHERE Skin.collection = ?',(id,), fetchall = True)
+    if len(skins) == 0:
+        abort(404)
     return render_template('skins.html', skins = skins, title= 'Skins')
 
 #search bar to search skin collection
@@ -81,9 +72,9 @@ def search():
         print (request.form.get("filter"))
         search = do_query(f'SELECT * FROM SkinCollection WHERE SkinCollection.visible_name LIKE "" || ? || "%" ORDER BY SkinCollection.visible_name;', (request.form.get("filter"),), fetchall = True)
         if len(search) == 0:
-            return redirect ('/error')
+            abort(404)
         elif request.form.get("filter")  =='':
-            return redirect ('/error')
+            abort(404)
         else:
             return redirect (f'/skins/{(search[0])[0]}')
 
@@ -112,7 +103,7 @@ def message():
 #error page
 @app.errorhandler(404)
 def error404(error):
-    return render_template('404.html', title = 'Error')
+    return render_template('404.html', title = 'Error'), 404
 
 
 if __name__ == "__main__":

@@ -7,23 +7,19 @@
 </center>
 
 <div class="grid-container">
-  {% for homea in homea%}
   <div>
     <a href="/agents/{{homea[0]}}">
       <h2> {{homea[1]}} </h2>
       <img src="/static/images/agents/{{homea[4]}}">
     </a>
   </div>
-  {% endfor %}
 
-  {% for homew in homew%}
   <div>
     <a href="/weapons/{{homew[0]}}">
       <h2> {{homew[1]}} </h2>
       <img src="/static/images/weapons/{{homew[3]}}">
     </a>
   </div>
-  {% endfor %}
 
 
   {% for homes in homes%}

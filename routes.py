@@ -1,19 +1,21 @@
-# tells python to use flask module and other things I need such as sqlite3 for database integration
+# tells python to use flask module and other things
+# I need such as sqlite3 for database integration
 
 import sqlite3
 from flask import Flask, render_template, request, redirect, flash, abort
+
 app = Flask(__name__)
-app.secret_key = '18197'
+app.secret_key = "18197"
 
 
 # do query to avoid repeated code when using @app.route
-def do_query(query,data= None,fetchall=False):
-    conn = sqlite3.connect('12Valorant.db') # connects to database file
-    cursor = conn.cursor() # assigns the connections cursor
+def do_query(query, data=None, fetchall=False):
+    conn = sqlite3.connect('12Valorant.db')  # connects to database file
+    cursor = conn.cursor()  # assigns the connections cursor
     if data is None:
         cursor.execute(query)
     else:
-        cursor.execute(query,data)
+        cursor.execute(query, data)
     results = cursor.fetchall() if fetchall else cursor.fetchone()
     return results
 
@@ -31,17 +33,20 @@ def home():
                      WHERE Skin.id = 30''', fetchall=True)
     return render_template('home.html', homea=homea, homew=homew,
                             homes=homes, title='Home')
-    # return the render template function to the user so that they can see the html file, and add the title home to the tab
+# return the render template function to the user
+# so that they can see the html file and add the title home to the tab
 
 
-# route to get everything from agents table and present all the names and images on one page
+# route to get everything from agents table
+# presents all the names and images on one page
 @app.route('/agents/')
 def agent():
     agents = do_query('SELECT * FROM Agents', fetchall=True)
     return render_template('agents.html', agents=agents, title='Agents')
 
 
-# route to get each agents data including weapon the weapon from selected id to show on each page
+# route to get each agents data including weapon the weapon
+# from selected id to show on each page
 @app.route('/agents/<int:id>')
 def agentid(id):
     agentid = do_query('''SELECT Agents.*, Weapon.name FROM Agents
@@ -59,7 +64,8 @@ def weapons():
     return render_template('weapons.html', weapons=weapons, title='Weapons')
 
 
-# route takes data from selected id in weapons table and presents its name, image and description of weapon
+# route takes data from selected id in weapons table
+# presents its name, image and description of weapon
 @app.route('/weapons/<int:id>')
 def weaponid(id):
     weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',
@@ -70,7 +76,8 @@ def weaponid(id):
                             title='Weapon')
 
 
-# route gets all data from skincollection table and presents all names and images on one webpage
+# route gets all data from skincollection table
+# presents all names and images on one webpage
 @app.route('/skins/')
 def skincollection():
     skincollection = do_query('SELECT * FROM SkinCollection', fetchall=True)
@@ -78,7 +85,8 @@ def skincollection():
                             skincollection=skincollection, title='Skins')
 
 
-# route gets skin collection name, image all skins and weapons linked to selected id of skin collection
+# route gets skin collection name, image all skins and weapons
+# linked to selected id of skin collection
 @app.route('/skins/<int:id>')
 def skins(id):
     skins = do_query('''SELECT Skin.*, SkinCollection.*,
@@ -103,14 +111,16 @@ def search():
                           (request.form.get("filter"),), fetchall=True)
         # query selects all from skin collection table
         if len(search) == 0:
-            abort(404) # if the input has 0 characters, it will abort to 404 page
+            abort(404) # if input has 0 characters, it will abort to 404 page
         if request.form.get("filter")  =='':
-            abort(404) # fix for when user presses enter would send to random skincollection id
+            abort(404) # fix for when user presses enter
         else:
-            return redirect (f'/skins/{(search[0])[0]}') # sends user to searched page
+            return redirect (f'/skins/{(search[0])[0]}')
+            # sends user to searched page
 
 
-# page with no database interaction, just displays html and css from the contact.html page
+# page with no database interaction
+# just displays html and css from the contact.html page
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title='Contact')
@@ -127,7 +137,8 @@ def message():
     user_email = request.form["user_email"]
     user_message = request.form["user_message"]
     sql = '''INSERT INTO contact(user_first_name, user_last_name,
-        user_email, user_message) VALUES (?, ?, ?, ?)'''  # inserts user input into contact table
+        user_email, user_message) VALUES (?, ?, ?, ?)'''
+        # inserts user input into contact table
     cursor.execute(sql,(user_first_name, user_last_name,
                         user_email, user_message))
     flash('Thank you!') # shows message after sending a message
@@ -139,7 +150,8 @@ def message():
 # gives user an error when URL entered doesn't go to a route on the site
 @app.errorhandler(404)
 def error404(error):
-    return render_template('404.html', title='Error'), 404 # returns the 404 page
+    return render_template('404.html', title='Error'), 404
+    # returns the 404 page
 
 
 # runs site on local port 8080

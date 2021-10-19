@@ -23,7 +23,7 @@ def do_query(query, data=None, fetchall=False):
 # Creates a route for the flaskapp for the home route
 @app.route('/')
 def home():
-    # queries to get my favourite agent,weapon and skin
+    # queries to get my favourite agent,weapon and skins
     homea = do_query('SELECT * FROM Agents WHERE id = 11')
     homew = do_query('SELECT * FROM Weapon WHERE id = 16')
     homes = do_query('''SELECT Skin.*, SkinCollection.*, Weapon.name
@@ -32,7 +32,7 @@ def home():
                      JOIN Weapon ON Weapon.id = Skin.weapon
                      WHERE Skin.id = 30''', fetchall=True)
     return render_template('home.html', homea=homea, homew=homew,
-                            homes=homes, title='Home')
+                           homes=homes, title='Home')
 # return the render template function to the user
 # so that they can see the html file and add the title home to the tab
 
@@ -49,11 +49,13 @@ def agent():
 # from selected id to show on each page
 @app.route('/agents/<int:id>')
 def agentid(id):
+    # query shows all data from picked agents table
+    # and shows their carrying weapon
     agentid = do_query('''SELECT Agents.*, Weapon.name FROM Agents
                        JOIN Weapon on Agents.carrying_weapon = Weapon.id
-                       WHERE Agents.id = ?;''',(id,),fetchall=True)
+                       WHERE Agents.id = ?;''', (id,), fetchall=True)
     if len(agentid) == 0:
-        abort(404) # sending user to error page due to manual URL change
+        abort(404)  # sending user to error page due to manual URL change
     return render_template('agentid.html', agentid=agentid, title='Agent')
 
 
@@ -68,34 +70,38 @@ def weapons():
 # presents its name, image and description of weapon
 @app.route('/weapons/<int:id>')
 def weaponid(id):
+    # query shows all data from weapons table from the picked weapon
     weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',
                         (id,), fetchall=True)
     if len(weaponid) == 0:
-        abort(404) # sending user to error page due to manual URL change
+        abort(404)  # sending user to error page due to manual URL change
     return render_template('weaponid.html', weaponid=weaponid,
-                            title='Weapon')
+                           title='Weapon')
 
 
 # route gets all data from skincollection table
 # presents all names and images on one webpage
 @app.route('/skins/')
 def skincollection():
+    # query shows skin collection image and name
     skincollection = do_query('SELECT * FROM SkinCollection', fetchall=True)
     return render_template('skincollection.html',
-                            skincollection=skincollection, title='Skins')
+                           skincollection=skincollection, title='Skins')
 
 
 # route gets skin collection name, image all skins and weapons
 # linked to selected id of skin collection
 @app.route('/skins/<int:id>')
 def skins(id):
+    # query shows all skins from the picked skin collection
+    # links weapon to each skin
     skins = do_query('''SELECT Skin.*, SkinCollection.*,
-                      Weapon.name FROM Skin
-                      JOIN SkinCollection on Skin.collection = SkinCollection.id
+                      Weapon.name FROM Skin JOIN SkinCollection
+                      on Skin.collection = SkinCollection.id
                       JOIN Weapon ON Weapon.id = Skin.weapon
-                      WHERE Skin.collection = ?''',(id,), fetchall=True)
+                      WHERE Skin.collection = ?''', (id,), fetchall=True)
     if len(skins) == 0:
-        abort(404) # sending user to error page due to manual URL change
+        abort(404)  # sending user to error page due to manual URL change
     return render_template('skins.html', skins=skins, title='Skins')
 
 
@@ -104,6 +110,8 @@ def skins(id):
 def search():
     if request.method == "POST":
         print (request.form.get("filter"))
+        # query takes user input and sends them to the skin collection
+        # with the same first letter
         search = do_query('''SELECT * FROM SkinCollection
                           WHERE SkinCollection.visible_name
                           LIKE "" || ? || "%"
@@ -111,11 +119,11 @@ def search():
                           (request.form.get("filter"),), fetchall=True)
         # query selects all from skin collection table
         if len(search) == 0:
-            abort(404) # if input has 0 characters, it will abort to 404 page
-        if request.form.get("filter")  =='':
-            abort(404) # fix for when user presses enter
+            abort(404)  # if input has 0 characters, it will abort to 404 page
+        if request.form.get("filter") == '':
+            abort(404)  # fix for when user presses enter
         else:
-            return redirect (f'/skins/{(search[0])[0]}')
+            return redirect(f'/skins/{(search[0])[0]}')
             # sends user to searched page
 
 
@@ -127,21 +135,22 @@ def contact():
 
 
 # form for user to fill in name,email and message
-@app.route ("/message", methods=["POST"])
+@app.route("/message", methods=["POST"])
 def message():
     # allows user to input their name, email and message as contact.
     connection = sqlite3.connect('12Valorant.db')
     cursor = connection.cursor()
+    # using forms to get user input
     user_first_name = request.form["user_first_name"]
     user_last_name = request.form["user_last_name"]
     user_email = request.form["user_email"]
     user_message = request.form["user_message"]
+    # query gets user input and inserts into contact table
     sql = '''INSERT INTO contact(user_first_name, user_last_name,
         user_email, user_message) VALUES (?, ?, ?, ?)'''
-        # inserts user input into contact table
-    cursor.execute(sql,(user_first_name, user_last_name,
-                        user_email, user_message))
-    flash('Thank you!') # shows message after sending a message
+    cursor.execute(sql, (user_first_name, user_last_name,
+                   user_email, user_message))
+    flash('Thank you!')  # shows message after sending a message
     connection.commit()
     connection.close()
     return redirect('/contact')

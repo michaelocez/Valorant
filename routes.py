@@ -145,7 +145,7 @@ def message():
     user_last_name = request.form["user_last_name"]
     user_email = request.form["user_email"]
     user_message = request.form["user_message"]
-    # query gets user input and inserts into contact table
+    # query gets user input and inserts into respective column in contact table
     sql = '''INSERT INTO contact(user_first_name, user_last_name,
         user_email, user_message) VALUES (?, ?, ?, ?)'''
     cursor.execute(sql, (user_first_name, user_last_name,

@@ -48,15 +48,15 @@ def agent():
 # route to get each agents data including weapon the weapon
 # from selected id to show on each page
 @app.route('/agents/<int:id>')
-def agentid(id):
+def agent_id(id):
     # query shows all data from picked agents table
     # and shows their carrying weapon
-    agentid = do_query('''SELECT Agents.*, Weapon.name FROM Agents
+    agent_id = do_query('''SELECT Agents.*, Weapon.name FROM Agents
                        JOIN Weapon on Agents.carrying_weapon = Weapon.id
                        WHERE Agents.id = ?;''', (id,), fetchall=True)
-    if len(agentid) == 0:
+    if len(agent_id) == 0:
         abort(404)  # sending user to error page due to manual URL change
-    return render_template('agentid.html', agentid=agentid, title='Agent')
+    return render_template('agentid.html', agent_id=agent_id, title='Agent')
 
 
 # route grabs all data from weapons table and shows the image and name on page
@@ -69,24 +69,24 @@ def weapons():
 # route takes data from selected id in weapons table
 # presents its name, image and description of weapon
 @app.route('/weapons/<int:id>')
-def weaponid(id):
+def weapon_id(id):
     # query shows all data from weapons table from the picked weapon
-    weaponid = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',
+    weapon_id = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',
                         (id,), fetchall=True)
-    if len(weaponid) == 0:
+    if len(weapon_id) == 0:
         abort(404)  # sending user to error page due to manual URL change
-    return render_template('weaponid.html', weaponid=weaponid,
+    return render_template('weaponid.html', weapon_id=weapon_id,
                            title='Weapon')
 
 
 # route gets all data from skincollection table
 # presents all names and images on one webpage
 @app.route('/skins/')
-def skincollection():
+def skin_collection():
     # query shows skin collection image and name
-    skincollection = do_query('SELECT * FROM SkinCollection', fetchall=True)
+    skin_collection = do_query('SELECT * FROM SkinCollection', fetchall=True)
     return render_template('skincollection.html',
-                           skincollection=skincollection, title='Skins')
+                           skin_collection=skin_collection, title='Skins')
 
 
 # route gets skin collection name, image all skins and weapons

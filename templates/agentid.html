@@ -4,16 +4,16 @@
 <center>
 <div class=agents>
 <!-- loop for agent image, description, abilities and name -->
-  {% for agentid in agentid %}
-    <b>{{agentid[1]}}</b>
-      <p>Basic Abilities<br>{{agentid[5]}}</p>
-      <p>Signature Abilities<br>{{agentid[6]}}</p>
-      <p>Ultimate Ability<br>{{agentid[7]}}</p>
-    <p class="PC">{{agentid[3]}} </p>
-    <a href="/weapons/{{agentid[2]}}">
-      <p>{{agentid[1]}} is carrying a {{agentid[8]}}</p>
+  {% for agent_id in agent_id %}
+    <b>{{agent_id[1]}}</b>
+      <p>Basic Abilities<br>{{agent_id[5]}}</p>
+      <p>Signature Abilities<br>{{agent_id[6]}}</p>
+      <p>Ultimate Ability<br>{{agent_id[7]}}</p>
+    <p class="PC">{{agent_id[3]}} </p>
+    <a href="/weapons/{{agent_id[2]}}">
+      <p>{{agent_id[1]}} is carrying a {{agent_id[8]}}</p>
     </a>
-    <img src="/static/images/agents/{{agentid[4]}}" class = "AgentImages" alt="{{agentid[1]}}">
+    <img src="/static/images/agents/{{agent_id[4]}}" class = "AgentImages" alt="{{agent_id[1]}}">
   {% endfor %}
 </div>
 </center>

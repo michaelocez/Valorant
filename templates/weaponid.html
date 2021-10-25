@@ -3,10 +3,10 @@
 <center>
 
 <!-- grid for weapon name, description and image -->
-{% for weaponid in weaponid %}
-  <b>{{weaponid[1]}}</b>
-  <p class="PC">{{weaponid[2]}}</p>
-  <img src="/static/images/weapons/{{weaponid[3]}}" class="WeaponImages" alt="Weapon Picture">
+{% for weapon_id in weapon_id %}
+  <b>{{weapon_id[1]}}</b>
+  <p class="PC">{{weapon_id[2]}}</p>
+  <img src="/static/images/weapons/{{weapon_id[3]}}" class="WeaponImages" alt="Weapon Picture">
 </center>
 {% endfor %}
 

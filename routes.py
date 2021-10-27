@@ -47,7 +47,7 @@ def agent():
 
 # route to get each agents data including weapon the weapon
 # from selected id to show on each page
-@app.route('/agents/<int:id>')
+@app.route('/agents/<string:id>')
 def agent_id(id):
     # query shows all data from picked agents table
     # and shows their carrying weapon
@@ -68,7 +68,7 @@ def weapons():
 
 # route takes data from selected id in weapons table
 # presents its name, image and description of weapon
-@app.route('/weapons/<int:id>')
+@app.route('/weapons/<string:id>')
 def weapon_id(id):
     # query shows all data from weapons table from the picked weapon
     weapon_id = do_query('SELECT * FROM Weapon WHERE Weapon.id = ?',
@@ -91,7 +91,7 @@ def skin_collection():
 
 # route gets skin collection name, image all skins and weapons
 # linked to selected id of skin collection
-@app.route('/skins/<int:id>')
+@app.route('/skins/<string:id>')
 def skins(id):
     # query shows all skins from the picked skin collection
     # links weapon to each skin

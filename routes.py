@@ -165,4 +165,4 @@ def error404(error):
 
 # runs site on local port 8080
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(port=8080, debug=False)

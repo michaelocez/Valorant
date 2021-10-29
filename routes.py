@@ -111,7 +111,7 @@ def search():
     if request.method == "POST":
         print (request.form.get("filter"))
         # query takes user input and sends them to the skin collection
-        # with the same first letter
+        # with similar characters as user input
         search = do_query('''SELECT * FROM SkinCollection
                           WHERE SkinCollection.visible_name
                           LIKE "" || ? || "%"
